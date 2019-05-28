@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dawi">
+	
+	<!-- 
+		- Las clases de entidades se mapean en el myibatis 
+		
+		- Se relaciona las columnas de la tabla con los
+		  atributos del bean
+	-->
+	<!-- 
+	
+		parameterType : parámetro del método que va completar el SQL
+	 -->
+	 
+	 <!-- MAPPERS : NOTICIAS -->
+	 
+	<resultMap  id="mapNoticia" type="noticiaBeanIbatis">
+		<id property="idNoticia" column="idNoticia"/>
+		<result property="Titulo" column="Titulo"/>
+		<result property="Contenido" column="Contenido"/>
+		<result property="Imagen" column="Imagen"/>
+		<result property="FechaRegistro" column="FechaRegistro"/>
+	</resultMap>
+	
+	<resultMap id="mapComentario" type="comentarioBeanIbatis" >
+		<id property="idComentario" column="idComentario"/><!-- PK -->
+		<result property="Descripcion" column="Descripcion"/>		<!-- Columna -->
+		<result property="FechaRegistro" column="FechaRegistro"/>
+		<association property="Usuario" column="idUsuario" select="SQL_buscaUsuario"/>	<!-- FK -->
+		<association property="Noticia" column="idNoticia" select="SQL_buscaNoticia"/>	<!-- FK -->
+	</resultMap>
+	
+	
+	<!-- MAPPERS : VENTAS -->
+	
+	
+	<resultMap id="mapCategoria" type="categoriaBeanIbatis" >
+		<id property="idCategoria" column="idCategoria"/><!-- PK -->
+		<result property="Nombre" column="Nombre"/>		<!-- Columna -->
+	</resultMap>
+	
+	<resultMap id="mapProducto" type="productoBeanIbatis" >
+		<id property="idProducto" column="idProducto"/><!-- PK -->
+		<result property="Nombre" column="Nombre"/>		<!-- Columna -->
+		<result property="Descripcion" column="Descripcion"/>
+		<result property="Precio" column="Precio"/>
+		<result property="Stock" column="Stock"/>
+		<result property="Imagen" column="Imagen"/>
+		<association property="Categoria" column="idCategoria" select="SQL_buscaCategoria"/>	<!-- FK -->
+	</resultMap>
+	
+	<resultMap id="mapPais" type="paisBeanIbatis" >
+		<id property="idPais" column="idPais"/><!-- PK -->
+		<result property="Nombre" column="Nombre"/>		<!-- Columna -->
+	</resultMap>
+	
+	<resultMap id="mapUsuario" type="usuarioBeanIbatis" >
+		<id property="idUsuario" column="idUsuario"/><!-- PK -->
+		<result property="Nombre" column="Nombre"/>		<!-- Columna -->
+		<result property="Apellido" column="Apellido"/>
+		<result property="FechaRegistro" column="FechaRegistro"/>
+		<result property="Correo" column="Correo"/>
+		<result property="Contrasenia" column="Contrasenia"/>
+		<result property="Ciudad" column="Ciudad"/>
+		<result property="Direccion" column="Direccion"/>
+		<result property="Telefono" column="Telefono"/>
+		<association property="Pais" column="idPais" select="SQL_buscaPais"/>	<!-- FK -->
+	</resultMap>
+	
+	<resultMap id="mapFactura" type="facturaBeanIbatis" >
+		<id property="idFactura" column="idFactura"/><!-- PK -->
+		<result property="FechaRegistro" column="FechaRegistro"/>		<!-- Columna -->
+		<result property="Estado" column="Estado"/>
+		<association property="Usuario" column="idUsuario" select="SQL_buscaUsuario"/>	<!-- FK -->
+	</resultMap>
+	
+	<resultMap id="mapDetalleFactura" type="detalleFacturaBeanIbatis" >
+		<result property="Cantidad" column="Cantidad"/>		<!-- Columna -->
+		<association property="Factura" column="idFactura" select="SQL_buscaFactura"/>	<!-- FK -->
+		<association property="Producto" column="idProducto" select="SQL_buscaProducto"/>	<!-- FK -->
+	</resultMap>
+	
+	<resultMap id="mapHistorialCompra" type="historialCompraBeanIbatis" >
+		<id property="idHistorial" column="idHistorial"/><!-- PK -->
+		<result property="FechaCompra" column="FechaCompra"/>		<!-- Columna -->
+		<association property="Factura" column="idFactura" select="SQL_buscaFactura"/>	<!-- FK -->
+	</resultMap>
+	
+	<!-- MAPPERS : PORTALES -->
+	
+	<resultMap  id="mapPortales" type="portalesBeanIbatis">
+		<id property="idPortales" column="idPortales"/>
+		<result property="Nombre" column="Nombre"/>
+		<result property="Url" column="Url"/>
+	</resultMap>
+	
+	<resultMap  id="mapPortalWeb" type="portalWebBeanIbatis">
+		<id property="idPortalWeb" column="idPortalWeb"/>
+		<result property="BannerTit1" column="BannerTit1"/>
+		<result property="BannerDesc1" column="BannerDesc1"/>
+		<result property="BannerTit2" column="BannerTit2"/>
+		<result property="BannerDesc2" column="BannerDesc2"/>
+		<result property="BannerTit3" column="BannerTit3"/>
+		<result property="BannerDesc3" column="BannerDesc3"/>
+		<result property="Encabezado" column="Encabezado"/>
+		<result property="Derechos" column="Derechos"/>
+		<result property="Direccion" column="Direccion"/>
+		<result property="Telefono" column="Telefono"/>
+		<result property="Correo" column="Correo"/>
+	</resultMap>
+	
+	<!-- Querys para el mantenimiento de modalidad -->
+	<!-- Cuando se trata de dos tablas se debe realizar un query
+		 adicional que llene por separado los datos de la tabla foránea
+	-->
+	
+	<!-- QUERYS : NOTICIAS -->
+	
+	<!-- Querys para el mantenimiento de noticia -->
+	<select id="SQL_listaNoticia" resultMap="mapNoticia"
+									parameterType="java.lang.String">
+		select * from noticia where Titulo like #{filtro} order by FechaRegistro desc
+	</select>
+	
+	<insert id="SQL_insertaNoticia" parameterType="noticiaBeanIbatis">		
+		INSERT INTO `tenisdb`.`noticia` (`titulo`, `contenido`, `imagen`, `fechaRegistro`) VALUES (#{titulo}, #{contenido}, #{imagen}, #{fechaRegistro});
+	</insert>
+	
+	<update id="SQL_actualizaNoticia" parameterType="noticiaBeanIbatis">
+		update noticia set titulo = #{titulo}, contenido = #{contenido}
+						where idNoticia = #{idNoticia}
+	</update>
+	
+	<delete id="SQL_eliminaNoticia" parameterType="int">
+		delete from noticia where idnoticia = #{id}
+	</delete>
+	
+	<!-- Querys para la consulta de fechas -->
+	<select id="SQL_consultaNoticiaFecha" parameterType="noticiaFiltroBeanIbatis" resultMap="mapNoticia">
+		select * from noticia where FechaRegistro between #{fechaIni} and #{fechaFin}		
+	</select>
+	
+	<!-- Querys para el mantenimiento de comentarios -->
+	<select id="SQL_listaComentario" resultMap="mapComentario">
+		select * from comentario where idNoticia = #{idNoticia}
+	</select>
+	
+	<insert id="SQL_insertaComentario" parameterType="comentarioBeanIbatis">		
+		INSERT INTO `tenisdb`.`comentario` (`Nombre`) VALUES (#{Nombre});
+	</insert>
+	
+	<update id="SQL_actualizaComentario" parameterType="comentarioBeanIbatis">
+		update comentario set Nombre = #{Nombre}
+						where idComentario = #{idComentario}
+	</update>
+	
+	<delete id="SQL_eliminaComentario" parameterType="int">
+		delete from comentario where idComentario = #{id}
+	</delete>
+	
+	<!-- QUERYS : COMPRA -->
+	
+	<!-- Querys para el mantenimiento de categoria -->
+	<select id="SQL_listaCategoria" resultMap="mapCategoria" parameterType="java.lang.String">
+		select * from categoria where nombre like #{filtro}
+	</select>
+	
+	<insert id="SQL_insertaCategoria" parameterType="categoriaBeanIbatis">		
+		INSERT INTO `tenisdb`.`categoria` (`Nombre`) VALUES (#{Nombre});
+	</insert>
+	
+	<update id="SQL_actualizaCategoria" parameterType="categoriaBeanIbatis">
+		update categoria set Nombre = #{Nombre}
+						where idCategoria = #{idCategoria}
+	</update>
+	
+	<delete id="SQL_eliminaCategoria" parameterType="int">
+		delete from categoria where idCategoria = #{id}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de Productos -->
+	<select id="SQL_listaProducto" resultMap="mapProducto" parameterType="java.lang.String">
+		select * from producto where nombre like #{filtro}
+	</select>
+	
+	<insert id="SQL_insertaProducto" parameterType="productoBeanIbatis">		
+		INSERT INTO `tenisdb`.`producto` (`Nombre`, `Descripcion`, `Precio`, `Stock`, `idCategoria`) VALUES (#{Nombre}, #{Descripcion}, #{Precio}, #{Stock}, #{Categoria.idCategoria} );
+	</insert>
+	
+	<update id="SQL_actualizaProducto" parameterType="productoBeanIbatis">
+		update producto set Nombre = #{Nombre},
+						set Descripcion = #{Descripcion},
+						set Precio = #{Precio},
+						set Stock = #{Stock},
+						set Imagen = #{Imagen},
+						set idCategoria = #{Categoria.idCategoria}
+						where idProducto = #{idProducto}
+	</update>
+	
+	<delete id="SQL_eliminaProducto" parameterType="int">
+		delete from producto where idProducto = #{id}
+	</delete>
+	
+	
+	
+	<!-- Querys para el mantenimiento de Pais -->
+	<select id="SQL_listaPais" resultMap="mapPais" parameterType="java.lang.String">
+		select * from pais where Nombre like #{filtro}
+	</select>
+	
+	<insert id="SQL_insertaPais" parameterType="paisBeanIbatis">		
+		INSERT INTO `tenisdb`.`pais` (`Nombre`) VALUES (#{Nombre});
+	</insert>
+	
+	<update id="SQL_actualizaPais" parameterType="paisBeanIbatis">
+		update pais set Nombre = #{nombre}
+						where idPais = #{idPais}
+	</update>
+	
+	<delete id="SQL_eliminaPais" parameterType="int">
+		delete from pais where idPais = #{id}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de Usuario -->
+	<select id="SQL_listaUsuario" resultMap="mapUsuario" parameterType="java.lang.String">
+		select * from usuario where correo like #{filtro}
+	</select>
+	
+	<insert id="SQL_insertaUsuario" parameterType="usuarioBeanIbatis">		
+		INSERT INTO `tenisdb`.`usuario` (`Nombre`, `Apellido`, `FechaRegistro`, `Correo`, `Contrasenia`, `idPais`, `Ciudad`, `Direccion`, `Telefono`) 
+		VALUES (#{Nombre}, #{Apellido}, #{FechaRegistro}, #{Correo}, #{Contrasenia}, #{idPais}, #{Ciudad}, #{Direccion}, #{Telefono});
+	</insert>
+	
+	<update id="SQL_actualizaUsuario" parameterType="usuarioBeanIbatis">
+		update usuario set Nombre = #{Nombre},
+						set Apellido = #{Apellido},
+						set FechaRegistro = #{FechaRegistro},
+						set Correo = #{Correo},
+						set Contrasenia = #{Contrasenia},
+						set idPais = #{idPais},
+						set Ciudad = #{Ciudad},
+						set Direccion = #{Direccion},
+						set Telefono = #{Telefono}
+						where idUsuario = #{idUsuario}
+	</update>
+	
+	<delete id="SQL_eliminaUsuario" parameterType="int">
+		delete from usuario where idUsuario = #{id}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de DetalleFactura -->
+	<select id="SQL_listaDetalleFactura" resultMap="mapDetalleFactura">
+		select * from detalle_factura
+	</select>
+	
+	<insert id="SQL_insertaDetalleFactura" parameterType="detalleFacturaBeanIbatis">		
+		INSERT INTO `tenisdb`.`detalle_factura` (`Cantidad`) VALUES (#{Cantidad});
+	</insert>
+	
+	<update id="SQL_actualizaDetalleFactura" parameterType="detalleFacturaBeanIbatis">
+		update detalle_factura set Cantidad = #{Cantidad}
+						where idFactura = #{idFactura} and idProducto = #{idProducto}
+	</update>
+	
+	<delete id="SQL_eliminaDetalleFactura" parameterType="detalleFacturaBeanIbatis">
+		delete from detalle_factura where idFactura = #{idFactura} and idProducto = #{idProducto}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de Factura -->
+	<select id="SQL_listaFactura" resultMap="mapFactura">
+		select * from factura
+	</select>
+	
+	<insert id="SQL_insertaFactura" parameterType="facturaBeanIbatis">		
+		INSERT INTO `tenisdb`.`factura` (`FechaRegistro`, `Estado`, `idUsuario`) 
+		VALUES (#{FechaRegistro}, #{Estado}, #{idUsuario});
+	</insert>
+	
+	<update id="SQL_actualizaFactura" parameterType="facturaBeanIbatis">
+		update factura 	set FechaRegistro = #{FechaRegistro},
+						set Estado = #{Estado},
+						set idUsuario = #{idUsuario}
+						where idFactura = #{idFactura}
+	</update>
+	
+	<delete id="SQL_eliminaFactura" parameterType="int">
+		delete from factura where idFactura = #{id}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de Portales -->
+	<select id="SQL_listaPortales" resultMap="mapFactura">
+		select * from portales
+	</select>
+	
+	<insert id="SQL_insertaPortales" parameterType="portalesBeanIbatis">		
+		INSERT INTO `tenisdb`.`portales` (`Nombre`, `Url`) 
+		VALUES (#{Nombre}, #{Url});
+	</insert>
+	
+	<update id="SQL_actualizaPortales" parameterType="portalesBeanIbatis">
+		update portales 	set Nombre = #{Nombre},
+						set Url = #{Url}
+						where idPortales = #{idPortales}
+	</update>
+	
+	<delete id="SQL_eliminaPortales" parameterType="int">
+		delete from portales where idPortales = #{id}
+	</delete>
+	
+	<!-- Querys para el mantenimiento de PortalWeb -->
+	<select id="SQL_listaPortalWeb" resultMap="mapPortalWeb">
+		select * from portalweb
+	</select>
+	
+	<insert id="SQL_insertaPortalWeb" parameterType="portalWebBeanIbatis">		
+		INSERT INTO `tenisdb`.`portalweb` (`BannerTit1`, `BannerDesc1`, `BannerTit2`, `BannerDesc2`, `BannerTit3`, `BannerDesc3`, `Encabezado`, `Derechos`, `Direccion`, `Telefono`, `Correo`) 
+		VALUES (#{BannerTit1}, #{BannerDesc1}, #{BannerTit2}, #{BannerDesc2}, #{BannerTit3}, #{BannerDesc3}, #{Encabezado}, #{Derechos}, #{Direccion}, #{Telefono}, #{Correo});
+	</insert>
+	
+	<update id="SQL_actualizaPortalWeb" parameterType="portalWebBeanIbatis">
+		update portalweb set BannerTit1 = #{BannerTit1},
+						set BannerDesc1 = #{BannerDesc1},
+						set BannerTit2 = #{BannerTit2},
+						set BannerDesc2 = #{BannerDesc2},
+						set BannerTit3 = #{BannerTit3},
+						set BannerDesc3 = #{BannerDesc3},
+						set Encabezado = #{Encabezado},
+						set Derechos = #{Derechos},
+						set Direccion = #{Direccion},
+						set Telefono = #{Telefono},
+						set Correo = #{Correo}
+						where idPortalWeb = #{idPortalWeb}
+	</update>
+	
+	<delete id="SQL_eliminaPortalWeb" parameterType="int">
+		delete from portalweb where idPortalWeb = #{id}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- QUERYS : BUSQUEDA -->
+	
+	<!-- Select para traer el nombre de la Noticia -->
+	<select id="SQL_buscaNoticia" resultMap="mapNoticia">
+		select * from noticia where idNoticia = #{id}
+	</select>
+	
+	<!-- Select para traer el nombre del Usuario -->
+	<select id="SQL_buscaUsuario" resultMap="mapUsuario">
+		select * from usuario where idUsuario = #{id}
+	</select>
+	
+	<!-- Select para traer el nombre del Categoria -->
+	<select id="SQL_buscaCategoria" resultMap="mapCategoria">
+		select * from Categoria where idCategoria = #{id}
+	</select>
+	
+	<!-- Select para traer el nombre del Pais -->
+	<select id="SQL_buscaPais" resultMap="mapPais">
+		select * from Pais where idPais = #{id}
+	</select>
+	
+	<!-- Select para traer el nombre del Producto -->
+	<select id="SQL_buscaProducto" resultMap="mapProducto">
+		select * from Producto where idProducto = #{id}
+	</select>
+	
+	<!-- Select para traer el nombre del Factura -->
+	<select id="SQL_buscaFactura" resultMap="mapFactura">
+		select * from factura where idFactura = #{id}
+	</select>
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
