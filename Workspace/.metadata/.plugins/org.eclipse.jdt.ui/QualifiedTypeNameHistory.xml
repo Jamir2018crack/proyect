@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="com.tenis.bean.EstadoFacturaBean"/>
+<fullyQualifiedTypeName name="com.tenis.bean.PortalesBean"/>
+<fullyQualifiedTypeName name="com.tenis.dao.PortalesDAO"/>
+<fullyQualifiedTypeName name="com.tenis.dao.MySqlPortalDAO"/>
+<fullyQualifiedTypeName name="com.tenis.service.PortalService"/>
+<fullyQualifiedTypeName name="com.tenis.service.PortalServiceImpl"/>
+<fullyQualifiedTypeName name="com.tenis.bean.PortalBean"/>
 </qualifiedTypeNameHistroy>

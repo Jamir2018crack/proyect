@@ -38,8 +38,8 @@
 					<div class="row">
 						<div class="col-md-3">	
 							<div class="form-group">
-							  	<label class="control-label" for="id_nombre_filtro">Nombre del Portal</label>
-							  	<input class="form-control" id="id_nombre_filtro"  name="filtro" placeholder="Ingrese el nombre de portal" type="text" maxlength="70"/>
+							  	<label class="control-label" for="id_nombre_filtro">Titulo</label>
+							  	<input class="form-control" id="id_nombre_filtro"  name="filtro" placeholder="Ingrese el titulo de portal" type="text" maxlength="70"/>
 							</div>
 						</div>
 					</div>			
@@ -65,11 +65,11 @@
 										<tbody>  
 												<c:forEach items="${portales}" var="x">
 													<tr>
-														<td style="font-size:40px" >${x.nombre}</td>
+														<td style="font-size:40px" >${x.titulo}</td>
 														<tr>
-																<td align="justify">${x.url}</td>
+																<td align="justify">${x.subtitulo}</td>
 																<td>
-																	<button type='button' data-toggle='modal' onclick="editar('${x.idPortal}','${x.nombre}','${x.url}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
+																	<button type='button' data-toggle='modal' onclick="editar('${x.idPortal}','${x.titulo}','${x.subtitulo}','${x.url}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
 																		<img src='images/edit.gif' width='auto' height='auto' />
 																	</button>
 																</td>
@@ -78,20 +78,20 @@
 																		<img src='images/delete.gif' width='auto' height='auto' />
 																	</button>
 																</td>
-															</tr>
-
-																<td>
+														</tr>
+															<td>
+																${x.url}
+															</td>
+														<tr>
+															<td>
+																${x.fecRegistro}
+															</td>	
+														</tr>
+															<td>
 																<br>
-																</td>
-															<tr>
-																<td>
-																<br>
-																</td>	
-															</tr>
-																<td>
-																<br>
-																</td>	
-															<tr>
+															</td>	
+														<tr>
+														
 														</tr>
 												</c:forEach>
 										</tbody>
@@ -123,9 +123,15 @@
 		                            <div id="stepOne" class="panel-collapse collapse in">
 		                                <div class="panel-body">
 		                                     <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_titulo">Nombre</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_titulo">Titulo</label>
 		                                        <div class="col-lg-5">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el nombre" type="text" maxlength="70"/>
+													<input class="form-control" id="id_reg_titulo" name="titulo" placeholder="Ingrese el titulo" type="text" maxlength="70"/>
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group">
+		                                        <label class="col-lg-3 control-label" for="id_reg_subtitulo">Subtitulo</label>
+		                                        <div class="col-lg-5">
+													<input class="form-control" id="id_reg_subtitulo" name="subtitulo" placeholder="Ingrese el subtitulo" type="text" maxlength="300"/>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
@@ -178,9 +184,15 @@
 		                                        </div>
 		                                     </div>
 		                                     <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_nombre">Nombre</label>
+		                                        <label class="col-lg-3 control-label" for="id_titulo">Titulo</label>
 		                                        <div class="col-lg-5">
-													<input class="form-control" id="id_nombre" name="nombre" placeholder="Ingrese el nombre" type="text" maxlength="70"/>
+													<input class="form-control" id="id_titulo" name="titulo" placeholder="Ingrese el titulo" type="text" maxlength="70"/>
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group">
+		                                        <label class="col-lg-3 control-label" for="id_subtitulo">Subtitulo</label>
+		                                        <div class="col-lg-5">
+													<input class="form-control" id="id_subtitulo" name="subtitulo" placeholder="Ingrese el subtitulo" type="text" maxlength="70"/>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
@@ -220,10 +232,11 @@ function registrar(){
 	$('#idModalRegistra').modal("show");
 }
 
-function editar(id,nombre,url){	
+function editar(id,titulo,subtitulo,url){	
 	
 	$('input[id=id_ID]').val(id);
-	$('input[id=id_nombre]').val(nombre);
+	$('input[id=id_titulo]').val(titulo);
+	$('input[id=id_subtitulo]').val(subtitulo);
 	$('[id=id_url]').val(url);
 	$('#idModalActualiza').modal("show");
 }
@@ -240,14 +253,27 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-        	nombre: {
-        		selector : '#id_reg_nombre',
+        	titulo: {
+        		selector : '#id_reg_titulo',
                 validators: {
                     notEmpty: {
-                        message: 'El nombre es un campo obligatorio'
+                        message: 'El titulo es un campo obligatorio'
                     },
                     stringLength :{
-                    	message:'El nombre es de 5 a 100 caracteres',
+                    	message:'El titulo es de 5 a 100 caracteres',
+                    	min : 5,
+                    	max : 100
+                    }
+                }
+            },
+            subtitulo: {
+        		selector : '#id_reg_subtitulo',
+                validators: {
+                    notEmpty: {
+                        message: 'El subtitulo es un campo obligatorio'
+                    },
+                    stringLength :{
+                    	message:'El subtitulo es de 5 a 100 caracteres',
                     	min : 5,
                     	max : 100
                     }

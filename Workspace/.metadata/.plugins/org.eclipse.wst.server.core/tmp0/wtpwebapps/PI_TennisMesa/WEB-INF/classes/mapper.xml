@@ -99,8 +99,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap  id="mapPortal" type="portalBeanIbatis">
 		<id property="idPortal" column="idPortal"/>
-		<result property="Nombre" column="Nombre"/>
+		<result property="Titulo" column="Titulo"/>
+		<result property="Subtitulo" column="Subtitulo"/>
 		<result property="Url" column="Url"/>
+		<result property="FecRegistro" column="FecRegistro"/>
 	</resultMap>
 	
 	<resultMap  id="mapPortalWeb" type="portalWebBeanIbatis">
@@ -303,16 +305,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- Querys para el mantenimiento de Portales -->
 	<select id="SQL_listaPortal" resultMap="mapPortal" parameterType="java.lang.String">
-		select * from portal where Nombre like #{filtro}
+		select * from portal where Titulo like #{filtro}
 	</select>
 	
 	<insert id="SQL_insertaPortal" parameterType="portalBeanIbatis">		
-		INSERT INTO `tenisdb`.`portal` (`Nombre`, `Url`) 
-		VALUES (#{Nombre}, #{Url});
+		INSERT INTO `tenisdb`.`portal` (`Titulo`, `Subtitulo`, `Url`, `FecRegistro`) 
+		VALUES (#{Titulo}, #{Subtitulo}, #{Url}, #{FecRegistro});
 	</insert>
 	
 	<update id="SQL_actualizaPortal" parameterType="portalBeanIbatis">
-		update portal set Nombre = #{Nombre}, Url = #{Url}
+		update portal set Titulo = #{Titulo}, Subtitulo = #{Subtitulo}, Url = #{Url}
 						where idPortal = #{idPortal}
 	</update>
 	

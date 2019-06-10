@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -32,8 +34,13 @@ public class PortalAction extends ActionSupport {
 	
 	//para el registrar y actualizar
 	private String id;
-	private String nombre;
+	private String titulo;
+	private String subtitulo;
 	private String url;
+	
+	private Date fechaActual=new Date();
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	private String fecRegistro = sdf.format(fechaActual);
 
 	
 	private List<PortalBean> lstConsulta = new ArrayList<PortalBean>();
@@ -62,7 +69,8 @@ public class PortalAction extends ActionSupport {
 			
 			PortalBean obj = new PortalBean();
 			obj.setIdPortal(Integer.parseInt(id));
-			obj.setNombre(nombre);
+			obj.setTitulo(titulo);
+			obj.setSubtitulo(subtitulo);
 			obj.setUrl(url);
 			
 			service.actualizaPortal(obj);
@@ -83,8 +91,10 @@ public class PortalAction extends ActionSupport {
 			PortalService service = new PortalServiceImpl();
 			
 			PortalBean obj = new PortalBean();
-			obj.setNombre(nombre);
+			obj.setTitulo(titulo);
+			obj.setSubtitulo(subtitulo);
 			obj.setUrl(url);
+			obj.setFecRegistro(fecRegistro);
 			
 			service.insertaPortal(obj);
 			portales =  service.consultaPortal(filtro);
@@ -183,13 +193,56 @@ public class PortalAction extends ActionSupport {
 	}
 
 
-	public String getNombre() {
-		return nombre;
+	
+
+
+	public String getTitulo() {
+		return titulo;
 	}
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+	public String getSubtitulo() {
+		return subtitulo;
+	}
+
+
+	public void setSubtitulo(String subtitulo) {
+		this.subtitulo = subtitulo;
+	}
+
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
+
+	public SimpleDateFormat getSdf() {
+		return sdf;
+	}
+
+
+	public void setSdf(SimpleDateFormat sdf) {
+		this.sdf = sdf;
+	}
+
+
+	public String getFecRegistro() {
+		return fecRegistro;
+	}
+
+
+	public void setFecRegistro(String fecRegistro) {
+		this.fecRegistro = fecRegistro;
 	}
 
 

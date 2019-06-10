@@ -59,6 +59,13 @@
 		         		<div class='pane-body'>	
 			         		<hi id="tit-noticia">
 			         			<a>
+			         				<button type="submit" class="btn btn-primary" id="validateBtnw1" onclick="window.location.href='/PI_TennisMesa/crudPortal.jsp'">Mantenimiento de Portal</button><br>&nbsp;<br>
+			         			</a>
+			         		</hi>
+		         		</div>
+		         		<div class='pane-body'>	
+			         		<hi id="tit-noticia">
+			         			<a>
 			         				<button type="submit" class="btn btn-primary" id="validateBtnw1" onclick="window.location.href='/PI_TennisMesa/Index.jsp'">Volver al Inicio</button><br>&nbsp;<br>
 			         			</a>
 			         		</hi>

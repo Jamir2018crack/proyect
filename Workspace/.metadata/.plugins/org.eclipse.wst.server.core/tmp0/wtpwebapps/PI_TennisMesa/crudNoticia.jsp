@@ -54,7 +54,7 @@
 							<button type="button" class="btn btn-primary" onclick="window.location.href='/PI_TennisMesa/Mantenimiento.jsp'">VOLVER</button><br>&nbsp;<br>
 						</div>
 						<div class="col-md-3">
-							<button type="button" class="btn btn-primary" onclick="window.location.href='/PI_TennisMesa/fecha.jsp'">FILTRAR POR FECHA</button><br>&nbsp;<br>
+							<button type="button" class="btn btn-primary" onclick="window.location.href='/PI_TennisMesa/NoticiaXFecha.jsp'">FILTRAR POR FECHA</button><br>&nbsp;<br>
 						</div>
 							
 					</div>

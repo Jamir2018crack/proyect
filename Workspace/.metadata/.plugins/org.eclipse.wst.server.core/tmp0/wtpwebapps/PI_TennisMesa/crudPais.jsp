@@ -64,39 +64,22 @@
 															<td style="font-size:40px" >
 																Nombre: ${x.nombre}
 															</td>
+															<td>
+																<button type='button' data-toggle='modal' onclick="editar('${x.idPais}','${x.nombre}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
+																	<img src='images/edit.gif' width='auto' height='auto' />
+																</button> 
+															</td>
+															<td>
+																<button type='button' data-toggle='modal' onclick="eliminar('${x.idPais}');">
+																	<img src='images/delete.gif' width='auto' height='auto' />
+																</button>
+															</td>
+														</tr>
 														<tr>
-																<td align="justify">
-																	Nombre: ${x.nombre}
-																</td>
-																<td>
-																	<button type='button' data-toggle='modal' onclick="editar('${x.idPais}','${x.nombre}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
-																		<img src='images/edit.gif' width='auto' height='auto' />
-																	</button> 
-																</td>
-																<td>
-																	<button type='button' data-toggle='modal' onclick="eliminar('${x.idPais}');">
-																		<img src='images/delete.gif' width='auto' height='auto' />
-																	</button>
-																</td>
-															</tr>
-																<td>
-																	<br>
-																</td>
-															<tr>
-																<td>
-																	<br>
-																</td>	
-															</tr>
-																<td>
-																	<br>
-																</td>	
-															<tr>
-															</tr>
-																<td>
-																	<br>
-																</td>	
-															<tr>
-															</tr>
+															
+														</tr>
+																
+														
 												</c:forEach>
 										</tbody>
 										</table>	
@@ -216,6 +199,7 @@ function registrar(){
 function editar(id,nombre){	
 	
 	$('input[id=id_ID]').val(id);
+	$('[id=id_reg_nombre]').val(nombre);
 	$('[id=id_nombre]').val(nombre);
 	$('#idModalActualiza').modal("show");
 }
@@ -261,6 +245,8 @@ $(document).ready(function() {
 });
 
 </script>
+
+
 
 </body>
 </html> 

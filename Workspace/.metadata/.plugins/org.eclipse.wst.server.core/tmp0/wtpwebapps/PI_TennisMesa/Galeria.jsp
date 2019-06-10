@@ -46,7 +46,7 @@ con=DriverManager.getConnection(url,user,clave);
 
 PreparedStatement ps;
 ResultSet rs;
-ps=con.prepareStatement("SELECT idproducto, nombre, descripcion, precio FROM producto order by idproducto desc");
+ps=con.prepareStatement("SELECT idportal, titulo, subtitulo, url, fecRegistro FROM portal");
 rs = ps.executeQuery();
 
 %>
@@ -84,10 +84,10 @@ rs = ps.executeQuery();
 								<li>
 									<a href="Noticias.jsp" class="hvr-overline-from-center scroll">Noticias</a>
 								</li>
-								<li>
+								<li class="active">
 									<a href="Tienda.jsp" class="hvr-overline-from-center scroll">Tienda</a>
 								</li>
-								<li class="active">
+								<li>
 									<a href="Galeria.jsp" class="hvr-overline-from-center scroll">Galeria</a>
 								</li>
 								<li>
@@ -140,35 +140,55 @@ rs = ps.executeQuery();
          
         
        <div class="producto-prin">
-        	<div class="enc-producto">NUESTROS PRODUCTOS</div>
+        	<div class="enc-noticia">NOTICIAS EXTERNAS</div>
+        	
+			
+			
+					
+				
+			
         	<div class='row'>
 	        	<%
 				while(rs.next()){
 				%>        
 						
 	            <div class="col-sm-4">
-	         		<div class='panel panel-default'>
+	         		<div class='panel panel-default' >
 		         		<div class='panel-heading' style='overflow:hidden'>
 		         		   
 					            	<img src="images/null.jpg" alt="imagen-not-prin" style="width: 250px">
 					            
-					         </div>
-		         		<div class='pane-body'>	
-		         		<hi id="tit-producto"><%= rs.getString("nombre")%></hi>
-		            	<p class="text-des-producto">
-		                	<%= rs.getString("descripcion")%>
-		           	 	</p>
-		           	 	<p class="text-pre-producto">
-		                	<%= rs.getDouble("precio")%>
-		           	 	</p>
-		         </div>
-				</div>
+					    </div>
+		         		<div class='pane-body' style="height: 200px">	
+			         		<hi id="tit-portal">
+			         			<a href='<%= rs.getString("url")%>'>
+			         		<%= rs.getString("titulo")%></a></hi>
+			            	<p class="text-portal" style="height: 125px">
+			                	<%= rs.getString("subtitulo")%>
+			           	 	</p>
+			           	 	<p class="text-portal" style="margin-right:20px; text-align: right;">
+			                	<%= rs.getString("fecRegistro")%>
+			           	 	</p>
+		         		</div>
+					</div>
 	         
 	           	</div>   
 	            <%}%>
             </div>
         </div>
         
+
+<script type="text/javascript">
+$(document).ready( function(){
+	$.getJSON("cargaCategoria",{}, function (data){
+		console.log(data);
+
+		$.each(data.lstCategoria, function(index, item){
+			$("#id_cboCategoria").append("<option value="+item.idCategoria+">"+ item.nombre +"</option>");
+		});
+	});
+});
+</script>
 
 
 </body>

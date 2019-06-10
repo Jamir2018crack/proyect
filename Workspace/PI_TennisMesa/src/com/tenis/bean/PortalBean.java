@@ -2,8 +2,10 @@ package com.tenis.bean;
 
 public class PortalBean {
 	private int idPortal;
-	private String Nombre;
+	private String Titulo;
+	private String Subtitulo;
 	private String Url;
+	private String FecRegistro;
 	
 	
 	
@@ -13,11 +15,24 @@ public class PortalBean {
 	public void setIdPortal(int idPortal) {
 		this.idPortal = idPortal;
 	}
-	public String getNombre() {
-		return Nombre;
+	
+	public String getTitulo() {
+		return Titulo;
 	}
-	public void setNombre(String nombre) {
-		Nombre = nombre;
+	public void setTitulo(String titulo) {
+		Titulo = titulo;
+	}
+	public String getSubtitulo() {
+		return Subtitulo;
+	}
+	public void setSubtitulo(String subtitulo) {
+		Subtitulo = subtitulo;
+	}
+	public String getFecRegistro() {
+		return FecRegistro;
+	}
+	public void setFecRegistro(String fecRegistro) {
+		FecRegistro = fecRegistro;
 	}
 	public String getUrl() {
 		return Url;
