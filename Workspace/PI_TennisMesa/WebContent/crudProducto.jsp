@@ -215,33 +215,35 @@
 		                                        </div>
 		                                     </div>
 		                                     <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_titulo">Nombre</label>
+		                                        <label class="col-lg-3 control-label" for="id_nombre">Nombre</label>
 		                                        <div class="col-lg-5">
-													<input class="form-control" id="id_titulo" name="titulo" placeholder="Ingrese el Titulo" type="text" maxlength="70"/>
+													<input class="form-control" id="id_nombre" name="nombre" placeholder="Ingrese el Nombre" type="text" maxlength="70"/>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_contenido">Descripcion</label>
+		                                        <label class="col-lg-3 control-label" for="id_descripcion">Descripcion</label>
 		                                        <div class="col-lg-5">
-													<textarea id="id_contenido" name="contenido" cols="60" rows="10" placeholder="Ingrese el Contenido" maxlength="20000" ></textarea>
+													<textarea id="id_descripcion" name="descripcion" cols="60" rows="10" placeholder="Ingrese la descripcion" maxlength="20000" ></textarea>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_contenido">Precio</label>
+		                                        <label class="col-lg-3 control-label" for="id_precio">Precio</label>
 		                                        <div class="col-lg-5">
-													<textarea id="id_contenido" name="contenido" cols="60" rows="10" placeholder="Ingrese el Contenido" maxlength="20000" ></textarea>
+													<textarea id="id_precio" name="precio" cols="60" rows="10" placeholder="Ingrese el precio" maxlength="20000" ></textarea>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_contenido">Stock</label>
+		                                        <label class="col-lg-3 control-label" for="id_stock">Stock</label>
 		                                        <div class="col-lg-5">
-													<textarea id="id_contenido" name="contenido" cols="60" rows="10" placeholder="Ingrese el Contenido" maxlength="20000" ></textarea>
+													<textarea id="id_stock" name="stock" cols="60" rows="10" placeholder="Ingrese el stock" maxlength="20000" ></textarea>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_contenido">Categoria</label>
+		                                        <label class="col-lg-3 control-label" for="id_categoria">Categoria</label>
 		                                        <div class="col-lg-5">
-													<textarea id="id_contenido" name="contenido" cols="60" rows="10" placeholder="Ingrese la Categoria" maxlength="20000" ></textarea>
+													<select id="id_cboCategoria" name="categoria"   class="form-control">
+														<option value=" " >[ Seleccione ]</option>
+													</select>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
@@ -323,7 +325,7 @@ function registrarCate(){
 	$('#idModalRegistraCate').modal("show");
 }
 
-function editar(id,titulo,contenido){	
+function editar(id,nombre,descripcion,precio,stock,idCategoria){	
 	
 	$('input[id=id_ID]').val(id);
 	$('input[id=id_nombre]').val(nombre);

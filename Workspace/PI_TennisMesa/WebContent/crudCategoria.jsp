@@ -64,6 +64,16 @@
 															<td style="font-size:40px" >
 																Nombre: ${x.nombre}
 															</td>
+															<td>
+																	<button type='button' data-toggle='modal' onclick="editar('${x.idCategoria}','${x.nombre}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
+																		<img src='images/edit.gif' width='auto' height='auto' />
+																	</button> 
+																</td>
+																<td>
+																	<button type='button' data-toggle='modal' onclick="eliminar('${x.idCategoria}');">
+																		<img src='images/delete.gif' width='auto' height='auto' />
+																	</button>
+																</td>
 														<tr>
 																<td align="justify">
 																	Nombre: ${x.nombre}
@@ -91,11 +101,13 @@
 																	<br>
 																</td>	
 															<tr>
+															
 															</tr>
 																<td>
 																	<br>
 																</td>	
 															<tr>
+															
 															</tr>
 												</c:forEach>
 										</tbody>
@@ -213,7 +225,7 @@ function registrarCategoria(){
 	$('#idModalRegistraCate').modal("show");
 }
 
-function editar(id,titulo,contenido){	
+function editar(id,nombre){	
 	
 	$('input[id=id_ID]').val(id);
 	$('input[id=id_nombre]').val(nombre);
@@ -246,14 +258,14 @@ $(document).ready(function() {
                     }
                 }
             },
-            descripcion: {
-        		selector : '#id_reg_descripcion',
+            nombre: {
+        		selector : '#id_nombre',
                 validators: {
                     notEmpty: {
-                        message: 'La descripcion es un campo obligatorio'
+                        message: 'El nombre es un campo obligatorio'
                     },
                     stringLength :{
-                    	message:'La descripcion es de 5 a 100 caracteres',
+                    	message:'El nombre es de 5 a 100 caracteres',
                     	min : 5,
                     	max : 5000000
                     }

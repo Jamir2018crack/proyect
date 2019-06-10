@@ -198,11 +198,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="SQL_actualizaProducto" parameterType="productoBeanIbatis">
 		update producto set Nombre = #{Nombre},
-						set Descripcion = #{Descripcion},
-						set Precio = #{Precio},
-						set Stock = #{Stock},
-						set Imagen = #{Imagen},
-						set idCategoria = #{Categoria.idCategoria}
+						 Descripcion = #{Descripcion},
+						 Precio = #{Precio},
+						 Stock = #{Stock},
+						 Imagen = #{Imagen},
+						 idCategoria = #{Categoria.idCategoria}
 						where idProducto = #{idProducto}
 	</update>
 	
@@ -242,14 +242,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="SQL_actualizaUsuario" parameterType="usuarioBeanIbatis">
 		update usuario set Nombre = #{Nombre},
-						set Apellido = #{Apellido},
-						set FechaRegistro = #{FechaRegistro},
-						set Correo = #{Correo},
-						set Contrasenia = #{Contrasenia},
-						set idPais = #{idPais},
-						set Ciudad = #{Ciudad},
-						set Direccion = #{Direccion},
-						set Telefono = #{Telefono}
+						 Apellido = #{Apellido},
+						 FechaRegistro = #{FechaRegistro},
+						 Correo = #{Correo},
+						 Contrasenia = #{Contrasenia},
+						 idPais = #{idPais},
+						 Ciudad = #{Ciudad},
+						 Direccion = #{Direccion},
+						 Telefono = #{Telefono}
 						where idUsuario = #{idUsuario}
 	</update>
 	
@@ -292,8 +292,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="SQL_actualizaFactura" parameterType="facturaBeanIbatis">
 		update factura 	set FechaRegistro = #{FechaRegistro},
-						set Estado = #{Estado},
-						set idUsuario = #{idUsuario}
+						 Estado = #{Estado},
+						 idUsuario = #{idUsuario}
 						where idFactura = #{idFactura}
 	</update>
 	
@@ -312,8 +312,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="SQL_actualizaPortal" parameterType="portalBeanIbatis">
-		update portal 	set Nombre = #{Nombre},
-						set Url = #{Url}
+		update portal set Nombre = #{Nombre}, Url = #{Url}
 						where idPortal = #{idPortal}
 	</update>
 	
@@ -333,16 +332,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="SQL_actualizaPortalWeb" parameterType="portalWebBeanIbatis">
 		update portalweb set BannerTit1 = #{BannerTit1},
-						set BannerDesc1 = #{BannerDesc1},
-						set BannerTit2 = #{BannerTit2},
-						set BannerDesc2 = #{BannerDesc2},
-						set BannerTit3 = #{BannerTit3},
-						set BannerDesc3 = #{BannerDesc3},
-						set Encabezado = #{Encabezado},
-						set Derechos = #{Derechos},
-						set Direccion = #{Direccion},
-						set Telefono = #{Telefono},
-						set Correo = #{Correo}
+						 BannerDesc1 = #{BannerDesc1},
+						 BannerTit2 = #{BannerTit2},
+						 BannerDesc2 = #{BannerDesc2},
+						 BannerTit3 = #{BannerTit3},
+						 BannerDesc3 = #{BannerDesc3},
+						 Encabezado = #{Encabezado},
+						 Derechos = #{Derechos},
+						 Direccion = #{Direccion},
+						 Telefono = #{Telefono},
+						 Correo = #{Correo}
 						where idPortalWeb = #{idPortalWeb}
 	</update>
 	

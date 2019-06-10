@@ -37,7 +37,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Raquetas'),(2,'Mesas'),(3,'Pelotas'),(4,'Uniforme'),(5,'Redes'),(10,'Utiliario');
+INSERT INTO `categoria` VALUES (1,'Raquetas'),(2,'Mesas'),(3,'Pelotas'),(4,'Uniforme'),(5,'Redes');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,27 +230,28 @@ INSERT INTO `pais` VALUES (3,'Peru'),(5,'Chile'),(6,'Argentina'),(7,'Portugal');
 UNLOCK TABLES;
 
 --
--- Table structure for table `portales`
+-- Table structure for table `portal`
 --
 
-DROP TABLE IF EXISTS `portales`;
+DROP TABLE IF EXISTS `portal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `portales` (
-  `idPortales` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `portal` (
+  `idPortal` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) DEFAULT NULL,
   `Url` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`idPortales`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idPortal`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `portales`
+-- Dumping data for table `portal`
 --
 
-LOCK TABLES `portales` WRITE;
-/*!40000 ALTER TABLE `portales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `portales` ENABLE KEYS */;
+LOCK TABLES `portal` WRITE;
+/*!40000 ALTER TABLE `portal` DISABLE KEYS */;
+INSERT INTO `portal` VALUES (1,'Youtube','https://www.youtube.com/'),(2,'El Comercio','https://elcomercio.pe/'),(4,'Peru21','https://peru21.pe/'),(5,'El Trome','https://trome.pe/');
+/*!40000 ALTER TABLE `portal` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -300,10 +301,10 @@ CREATE TABLE `producto` (
   `Precio` decimal(10,0) DEFAULT NULL,
   `Stock` tinyint(4) DEFAULT NULL,
   `Imagen` longblob,
-  `idCategoria` int(11) NOT NULL,
+  `idCategoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idProducto`),
   KEY `fk_Producto_Categoria1_idx` (`idCategoria`),
-  CONSTRAINT `fk_Producto_Categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Producto_Categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -313,7 +314,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Raqueta Master','La mejor raqueta actual del mercado',50,26,NULL,1),(4,'Pelota Grande','Pelota grande de color azul',26,24,NULL,3),(5,'Mesa azul','Mesa grande hasta para 4 personas',49,20,NULL,2),(6,'Botella de Agua','Botella de 600ml de agua pura de manantial',12,50,NULL,10);
+INSERT INTO `producto` VALUES (1,'Raqueta Master','La mejor raqueta actual del mercado',50,26,NULL,1),(4,'Pelota Grande','Pelota grande de color azul',26,24,NULL,3),(5,'Mesa azul','Mesa grande hasta para 4 personas',49,20,NULL,2),(6,'Botella de Agua','Botella de 600ml de agua pura de manantial',12,50,NULL,NULL);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-01 23:08:28
+-- Dump completed on 2019-06-09 22:58:00

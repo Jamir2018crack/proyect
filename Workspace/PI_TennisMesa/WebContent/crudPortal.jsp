@@ -38,8 +38,8 @@
 					<div class="row">
 						<div class="col-md-3">	
 							<div class="form-group">
-							  	<label class="control-label" for="id_nombre_filtro">Título</label>
-							  	<input class="form-control" id="id_nombre_filtro"  name="filtro" placeholder="Ingrese el titulo" type="text" maxlength="70"/>
+							  	<label class="control-label" for="id_nombre_filtro">Nombre del Portal</label>
+							  	<input class="form-control" id="id_nombre_filtro"  name="filtro" placeholder="Ingrese el nombre de portal" type="text" maxlength="70"/>
 							</div>
 						</div>
 					</div>			
@@ -53,9 +53,7 @@
 						<div class="col-md-3">
 							<button type="button" class="btn btn-primary" onclick="window.location.href='/PI_TennisMesa/Mantenimiento.jsp'">VOLVER</button><br>&nbsp;<br>
 						</div>
-						<div class="col-md-3">
-							<button type="button" class="btn btn-primary" onclick="window.location.href='/PI_TennisMesa/fecha.jsp'">FILTRAR POR FECHA</button><br>&nbsp;<br>
-						</div>
+						
 							
 					</div>
 					<div class="row" > 
@@ -67,9 +65,9 @@
 										<tbody>  
 												<c:forEach items="${portales}" var="x">
 													<tr>
-														<td style="font-size:40px" >${x.titulo}</td>
+														<td style="font-size:40px" >${x.nombre}</td>
 														<tr>
-																<td align="justify">${x.contenido}</td>
+																<td align="justify">${x.url}</td>
 																<td>
 																	<button type='button' data-toggle='modal' onclick="editar('${x.idPortal}','${x.nombre}','${x.url}');" class='btn btn-success' style='background-color:hsla(233, 100%, 100%, 0);'>
 																		<img src='images/edit.gif' width='auto' height='auto' />
@@ -242,27 +240,27 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-        	titulo: {
-        		selector : '#id_reg_titulo',
+        	nombre: {
+        		selector : '#id_reg_nombre',
                 validators: {
                     notEmpty: {
-                        message: 'El titulo es un campo obligatorio'
+                        message: 'El nombre es un campo obligatorio'
                     },
                     stringLength :{
-                    	message:'El titulo es de 5 a 100 caracteres',
+                    	message:'El nombre es de 5 a 100 caracteres',
                     	min : 5,
                     	max : 100
                     }
                 }
             },
-            contenido: {
-        		selector : '#id_reg_contenido',
+            url: {
+        		selector : '#id_reg_url',
                 validators: {
                     notEmpty: {
-                        message: 'El contenido es un campo obligatorio'
+                        message: 'El url es un campo obligatorio'
                     },
                     stringLength :{
-                    	message:'El contenido es de 5 a 100 caracteres',
+                    	message:'El url es de 5 a 100 caracteres',
                     	min : 5,
                     	max : 5000000
                     }
