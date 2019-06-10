@@ -1,0 +1,11 @@
+package com.tenis.service;
+import java.util.List;
+
+import com.tenis.bean.PortalBean;
+public interface PortalService {
+	public abstract int eliminaPortal(int idPortal) throws Exception;
+	public abstract int insertaPortal(PortalBean obj) throws Exception;
+	public abstract int actualizaPortal(PortalBean obj) throws Exception;
+	public abstract List<PortalBean> consultaPortal(String filtro) throws Exception;
+
+}

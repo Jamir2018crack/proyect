@@ -97,8 +97,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- MAPPERS : PORTALES -->
 	
-	<resultMap  id="mapPortales" type="portalesBeanIbatis">
-		<id property="idPortales" column="idPortales"/>
+	<resultMap  id="mapPortal" type="portalBeanIbatis">
+		<id property="idPortal" column="idPortal"/>
 		<result property="Nombre" column="Nombre"/>
 		<result property="Url" column="Url"/>
 	</resultMap>
@@ -276,7 +276,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- Querys para el mantenimiento de Factura -->
-	<select id="SQL_listaFactura" resultMap="mapFactura">
+	<select id="SQL_listaFactura" resultMap="mapFactura" >
 		select * from factura
 	</select>
 	
@@ -302,23 +302,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- Querys para el mantenimiento de Portales -->
-	<select id="SQL_listaPortales" resultMap="mapFactura">
-		select * from portales
+	<select id="SQL_listaPortal" resultMap="mapPortal" parameterType="java.lang.String">
+		select * from portal where Nombre like #{filtro}
 	</select>
 	
-	<insert id="SQL_insertaPortales" parameterType="portalesBeanIbatis">		
-		INSERT INTO `tenisdb`.`portales` (`Nombre`, `Url`) 
+	<insert id="SQL_insertaPortal" parameterType="portalBeanIbatis">		
+		INSERT INTO `tenisdb`.`portal` (`Nombre`, `Url`) 
 		VALUES (#{Nombre}, #{Url});
 	</insert>
 	
-	<update id="SQL_actualizaPortales" parameterType="portalesBeanIbatis">
-		update portales 	set Nombre = #{Nombre},
+	<update id="SQL_actualizaPortal" parameterType="portalBeanIbatis">
+		update portal 	set Nombre = #{Nombre},
 						set Url = #{Url}
-						where idPortales = #{idPortales}
+						where idPortal = #{idPortal}
 	</update>
 	
-	<delete id="SQL_eliminaPortales" parameterType="int">
-		delete from portales where idPortales = #{id}
+	<delete id="SQL_eliminaPortal" parameterType="int">
+		delete from portal where idPortal = #{id}
 	</delete>
 	
 	<!-- Querys para el mantenimiento de PortalWeb -->

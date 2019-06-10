@@ -60,3 +60,16 @@
 0:0:0:0:0:0:0:1 - - [09/Jun/2019:19:31:04 -0500] "GET /PI_TennisMesa/Noticias.jsp HTTP/1.1" 200 7324
 0:0:0:0:0:0:0:1 - - [09/Jun/2019:19:31:07 -0500] "GET /PI_TennisMesa/Tienda.jsp HTTP/1.1" 200 8597
 0:0:0:0:0:0:0:1 - - [09/Jun/2019:19:31:07 -0500] "GET /PI_TennisMesa/cargaCategoria HTTP/1.1" 200 382
+127.0.0.1 - - [09/Jun/2019:20:46:43 -0500] "GET / HTTP/1.1" 404 961
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:20:46:45 -0500] "GET /PI_TennisMesa/Index.jsp HTTP/1.1" 200 8154
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:20:46:51 -0500] "GET /PI_TennisMesa/Noticias.jsp HTTP/1.1" 200 7324
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:20:46:53 -0500] "GET /PI_TennisMesa/Tienda.jsp HTTP/1.1" 200 8597
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:20:46:54 -0500] "GET /PI_TennisMesa/cargaCategoria HTTP/1.1" 200 382
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:20:46:55 -0500] "GET /PI_TennisMesa/Galeria.jsp HTTP/1.1" 200 7311
+127.0.0.1 - - [09/Jun/2019:21:17:53 -0500] "GET / HTTP/1.1" 404 961
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:17:56 -0500] "GET /PI_TennisMesa/crudPortal.jsp HTTP/1.1" 200 10878
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:18:00 -0500] "POST /PI_TennisMesa/consultaPortal HTTP/1.1" 200 10878
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:18:43 -0500] "GET /PI_TennisMesa/crudPais.jsp HTTP/1.1" 200 8945
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:18:45 -0500] "POST /PI_TennisMesa/consultaPais HTTP/1.1" 200 13864
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:18:47 -0500] "GET /PI_TennisMesa/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 404 1069
+0:0:0:0:0:0:0:1 - - [09/Jun/2019:21:18:47 -0500] "GET /PI_TennisMesa/fonts/glyphicons-halflings-regular.woff HTTP/1.1" 200 23424

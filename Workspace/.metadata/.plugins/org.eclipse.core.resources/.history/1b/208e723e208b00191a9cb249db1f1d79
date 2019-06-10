@@ -1,0 +1,14 @@
+package com.tenis.dao;
+import java.util.List;
+
+import com.tenis.bean.NoticiaBean;
+import com.tenis.bean.NoticiaFilFecBean;
+import com.tenis.bean.PortalesBean;
+public interface PortalesDAO {
+	public abstract int eliminaPortal(int idPortal) throws Exception;
+	public abstract int insertaPortal(PortalesBean obj) throws Exception;
+	public abstract int actualizaPortal(PortalesBean obj) throws Exception;
+	public abstract List<PortalesBean> consultaPortal(String filtro) throws Exception;
+	
+
+}

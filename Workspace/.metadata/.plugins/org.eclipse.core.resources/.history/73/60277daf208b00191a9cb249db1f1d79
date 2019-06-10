@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<!-- PASO 1) Se registra las entidades -->
+<!-- Se informa al myIbatis los tipos de datos a usar(Bean) -->
+<typeAliases>
+	<typeAlias alias="noticiaBeanIbatis" type="com.tenis.bean.NoticiaBean"/>
+	<typeAlias alias="noticiaFiltroBeanIbatis" type="com.tenis.bean.NoticiaFilFecBean"/>
+	<typeAlias alias="comentarioBeanIbatis" type="com.tenis.bean.ComentarioBean"/>
+	<typeAlias alias="categoriaBeanIbatis" type="com.tenis.bean.CategoriaBean"/>
+	<typeAlias alias="productoBeanIbatis" type="com.tenis.bean.ProductoBean"/>
+	<typeAlias alias="paisBeanIbatis" type="com.tenis.bean.PaisBean"/>
+	<typeAlias alias="usuarioBeanIbatis" type="com.tenis.bean.UsuarioBean"/>
+	<typeAlias alias="facturaBeanIbatis" type="com.tenis.bean.FacturaBean"/>
+	<typeAlias alias="estadoFacturaBeanIbatis" type="com.tenis.bean.EstadoFacturaBean"/>
+	<typeAlias alias="pedidoFilFecBeanIbatis" type="com.tenis.bean.PedidoFilFecBean"/>
+	<typeAlias alias="detalleFacturaBeanIbatis" type="com.tenis.bean.DetalleFacturaBean"/>
+	<typeAlias alias="portalesBeanIbatis" type="com.tenis.bean.PortalesBean"/>
+	<typeAlias alias="portalWebBeanIbatis" type="com.tenis.bean.PortalWebBean"/>
+	<typeAlias alias="historialCompraBeanIbatis" type="com.tenis.bean.HistorialCompraBean"/>
+</typeAliases>
+
+
+<!-- los valores de la conexion -->		
+<environments default="development">
+				<environment id="development">
+					<transactionManager type="JDBC"/>
+						<dataSource type="UNPOOLED">
+								<property name="driver" value="com.mysql.jdbc.Driver"/>
+								<property name="url" value="jdbc:mysql://localhost:3306/tenisdb"/>
+								<property name="username" value="root"/>
+								<property name="password" value="mysql"/>
+						</dataSource>
+				</environment>
+</environments>
+
+
+		<mappers>
+				<mapper resource="mapper.xml" />
+		</mappers>
+
+</configuration>

@@ -1,16 +1,17 @@
 package com.tenis.bean;
 
-public class PortalesBean {
-	private int idPortales;
+public class PortalBean {
+	private int idPortal;
 	private String Nombre;
 	private String Url;
 	
 	
-	public int getIdPortales() {
-		return idPortales;
+	
+	public int getIdPortal() {
+		return idPortal;
 	}
-	public void setIdPortales(int idPortales) {
-		this.idPortales = idPortales;
+	public void setIdPortal(int idPortal) {
+		this.idPortal = idPortal;
 	}
 	public String getNombre() {
 		return Nombre;

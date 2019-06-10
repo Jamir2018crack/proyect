@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias alias="estadoFacturaBeanIbatis" type="com.tenis.bean.EstadoFacturaBean"/>
 	<typeAlias alias="pedidoFilFecBeanIbatis" type="com.tenis.bean.PedidoFilFecBean"/>
 	<typeAlias alias="detalleFacturaBeanIbatis" type="com.tenis.bean.DetalleFacturaBean"/>
-	<typeAlias alias="portalesBeanIbatis" type="com.tenis.bean.PortalesBean"/>
+	<typeAlias alias="portalBeanIbatis" type="com.tenis.bean.PortalBean"/>
 	<typeAlias alias="portalWebBeanIbatis" type="com.tenis.bean.PortalWebBean"/>
 	<typeAlias alias="historialCompraBeanIbatis" type="com.tenis.bean.HistorialCompraBean"/>
 </typeAliases>
