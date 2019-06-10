@@ -47,7 +47,7 @@ public class NoticiaAction extends ActionSupport {
 	private NoticiaFilFecBean filtroBean;
 	
 	@Action(value="/consultaXNoticiaFecha",
-			results={@Result(name="success",location="/fecha.jsp")
+			results={@Result(name="success",location="/NoticiaXFecha.jsp")
 	})
 	public String consulta02(){
 		NoticiaServiceImpl service = new NoticiaServiceImpl();

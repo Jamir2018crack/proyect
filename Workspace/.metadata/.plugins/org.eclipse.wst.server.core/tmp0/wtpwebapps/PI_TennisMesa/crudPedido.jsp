@@ -30,11 +30,11 @@
  <div class="container">
  <h1>Crud de Pedido</h1>
 		 <div class="col-md-23" >  
-			  <form id="idFormElimina" action="eliminaNoticia">
+			  <form id="idFormElimina" action="eliminaPedido">
 			  		<input type="hidden" id="id_elimina" name="id">
 			  </form>	
 				
-		       <form accept-charset="UTF-8"  action="consultaNoticia" class="simple_form" id="defaultForm2"  method="post">
+		       <form accept-charset="UTF-8"  action="consultaPedido" class="simple_form" id="defaultForm2"  method="post">
 					<div class="row">
 						<div class="col-md-3">	
 							<div class="form-group">

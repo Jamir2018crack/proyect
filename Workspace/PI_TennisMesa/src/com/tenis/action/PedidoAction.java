@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.tenis.bean.EstadoFacturaBean;
 import com.tenis.bean.FacturaBean;
 import com.tenis.bean.PedidoFilFecBean;
 import com.tenis.bean.UsuarioBean;
@@ -33,14 +34,14 @@ public class PedidoAction extends ActionSupport {
 	private Date fechaActual=new Date();
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	private String fechaRegistro = sdf.format(fechaActual);
-	private String estado;
+	private EstadoFacturaBean estado;
 	private UsuarioBean usuario;
 	
 	private List<FacturaBean> lstConsulta = new ArrayList<FacturaBean>();
 	private PedidoFilFecBean filtroBean;
 	
 	@Action(value="/consultaXPedidoFecha",
-			results={@Result(name="success",location="/fecha.jsp")
+			results={@Result(name="success",location="/PedidoXFecha.jsp")
 	})
 	public String consulta02(){
 		PedidoServiceImpl service = new PedidoServiceImpl();

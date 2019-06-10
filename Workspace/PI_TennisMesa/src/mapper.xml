@@ -71,6 +71,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="Pais" column="idPais" select="SQL_buscaPais"/>	<!-- FK -->
 	</resultMap>
 	
+	<resultMap id="mapEstadoFactura" type="estadoFacturaBeanIbatis" >
+		<id property="idEstadoFactura" column="idCategoria"/><!-- PK -->
+		<result property="Descripcion" column="Descripcion"/>		<!-- Columna -->
+	</resultMap>
+	
 	<resultMap id="mapFactura" type="facturaBeanIbatis" >
 		<id property="idFactura" column="idFactura"/><!-- PK -->
 		<result property="FechaRegistro" column="FechaRegistro"/>		<!-- Columna -->
@@ -273,6 +278,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Querys para el mantenimiento de Factura -->
 	<select id="SQL_listaFactura" resultMap="mapFactura">
 		select * from factura
+	</select>
+	
+	<!-- Querys para la consulta de fechas -->
+	<select id="SQL_consultaFacturaFecha" parameterType="pedidoFilFecBeanIbatis" resultMap="mapFactura">
+		select * from factura where FechaRegistro between #{fechaIni} and #{fechaFin}		
 	</select>
 	
 	<insert id="SQL_insertaFactura" parameterType="facturaBeanIbatis">		
